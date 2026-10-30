@@ -13,28 +13,19 @@
 </div></div>
 <div class="cats" id="cats"></div></div></header>
 
-<div class="w hero">
-<div class="side"><h4 data-i="bycat"></h4><div id="sidecats"></div></div>
-<div class="ban" id="ban"></div>
-<div class="rs">
-<div class="box promo"><h4 data-i="pt"></h4><p data-i="pp"></p><a class="btn" href="#deals" data-i="pb"></a></div>
-<div class="box trust"><ul>
-<li>✅<div><b data-i="tr1"></b><em data-i="tr1d"></em></div></li>
-<li>🏷️<div><b data-i="tr2"></b><em data-i="tr2d"></em></div></li>
-<li>🔗<div><b data-i="tr3"></b><em data-i="tr3d"></em></div></li></ul></div>
-</div></div>
-
+<div class="amz"><div class="ban" id="ban"></div>
+<div class="w tiles" id="tiles"></div></div>
+<div class="w sec"><div class="circ" id="circ"></div></div>
 <div class="w sec" id="deals"><div class="flash">
-<div class="sh"><h2>⚡ <span data-i="fl"></span></h2><a href="#all" onclick="cur='*';sort.value='disc';draw()" data-i="seeall"></a></div>
+<div class="sh"><h2><span data-i="fl"></span> <span class="cd" id="cd"></span></h2><a href="#all" onclick="cur='*';sort.value='disc';draw()" data-i="seeall"></a></div>
 <div class="row" id="flash"></div></div></div>
-
+<div id="rows"></div>
+<div class="w sec" id="rv" style="display:none"><div class="box"><div class="sh"><h2 data-i="recent"></h2></div><div class="row" id="rvr"></div></div></div>
 <div class="w sec"><div class="sh"><h2 data-i="brh"></h2></div><div class="brands" id="brands"></div></div>
-
 <div class="w sec" id="all">
 <div class="tb"><h2 style="font-size:22px;margin-right:10px" data-i="allh"></h2><span class="cnt" id="cnt"></span>
 <select id="sort" onchange="draw()"><option value="pop" data-i="s_pop"></option><option value="asc" data-i="s_asc"></option><option value="desc" data-i="s_desc"></option><option value="disc" data-i="s_disc"></option></select></div>
 <div class="grid" id="grid"></div></div>
-
 <div class="w sec"><div class="nl"><div><h3 data-i="nt"></h3><p data-i="np"></p></div>
 <form onsubmit="event.preventDefault();this.innerHTML='<b>'+t('ty')+'</b>'"><input type="email" required data-ph="em"><button class="btn" data-i="nb"></button></form></div></div>
 
