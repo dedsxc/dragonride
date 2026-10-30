@@ -12,7 +12,6 @@ function render(){
 $("cats").innerHTML=[...C,"fav"].map(c=>`<button class="${c==cur?"on":""}" onclick="cur='${c}';draw();go()">${c=="*"?t("all"):t(c)}</button>`).join("");
 $("sidecats").innerHTML=C.slice(1).map(c=>`<a onclick="cur='${c}';draw();go()">${t(c)}<span>${P.filter(x=>x.c==c).length}</span></a>`).join("");
 ban();
-$("ban").innerHTML=`<div><small>DragonRide</small><h1>${t(b.k+"t")}</h1><p>${t(b.k+"p")}</p><a class="btn" onclick="cur='${b.c}';draw();go()">${t("shop")} →</a></div><div class="dots">${BAN.map((_,i)=>`<i class="${i==bi?"on":""}" onclick="bi=${i};render()"></i>`).join("")}</div>`;
 const IM={frames:"photo-1532298229144-0ec0c57515c7",bikes:"photo-1485965120184-e220f721d03e",wheels:"photo-1507035895480-2b3156c31fc8",power:"photo-1541625602330-2277a4c46182"};const ui=i=>`https://images.unsplash.com/${i}?w=300&q=60`;
 const cheap=[...P].sort((a,b)=>a.p-b.p)[0];
 $("tiles").innerHTML=`<div class="tile"><h3>${t("tl1")}</h3><div class="q4">${C.slice(1).map(c=>`<a onclick="cur='${c}';draw();go()"><img src="${ui(IM[c])}" alt="">${t(c)}</a>`).join("")}</div><a class="lk" onclick="cur='*';draw();go()">${t("seeall")}</a></div>
