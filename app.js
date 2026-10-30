@@ -10,7 +10,6 @@ const BAN=[{k:"b1",img:"photo-1517649763962-0c623066013b",c:"frames"},{k:"b2",im
 function card(x){const d=disc(x),f=favs.includes(x.id);return `<div class="card" onclick="openP(${x.id})"><div class="ph"><img loading="lazy" src="${x.img}" alt="">${d?`<span class="off">-${d}%</span>`:""}<button class="fav ${f?"on":""}" onclick="event.stopPropagation();tf(${x.id})">${f?"♥":"♡"}</button></div><div class="in"><h3>${x.n}</h3><div class="pr"><b>${fm(x)}</b>${x.o?`<s>${fo(x)}</s>`:""}</div><div class="tags"><span class="tg">≈ ${x.eq}</span><span class="tg g">✓ ${t("shopd")}</span></div><div class="store">${x.b} ›</div></div><button class="add" onclick="event.stopPropagation();al(${x.id},this)">+</button></div>`}
 function render(){
 $("cats").innerHTML=[...C,"fav"].map(c=>`<button class="${c==cur?"on":""}" onclick="cur='${c}';draw();go()">${c=="*"?t("all"):t(c)}</button>`).join("");
-$("sidecats").innerHTML=C.slice(1).map(c=>`<a onclick="cur='${c}';draw();go()">${t(c)}<span>${P.filter(x=>x.c==c).length}</span></a>`).join("");
 ban();
 const IM={frames:"photo-1532298229144-0ec0c57515c7",bikes:"photo-1485965120184-e220f721d03e",wheels:"photo-1507035895480-2b3156c31fc8",power:"photo-1541625602330-2277a4c46182"};const ui=i=>`https://images.unsplash.com/${i}?w=300&q=60`;
 const cheap=[...P].sort((a,b)=>a.p-b.p)[0];
