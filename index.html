@@ -1,56 +1,46 @@
 <!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>DragonRide — Le meilleur du vélo chinois</title>
-<meta name="description" content="Fiches, prix officiels et comparaisons des marques vélo chinoises : Winspace, Elves, Yoeleo, Magene…">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<title>DragonRide · Le marché du vélo chinois</title>
+<meta name="description" content="Cadres, roues et capteurs des marques vélo chinoises (Winspace, Elves, Yoeleo, Magene) aux prix officiels, avec liens vers les boutiques officielles.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css"></head><body>
-<nav><a class="logo" href="#"><i></i>DragonRide</a>
-<ul><li><a href="#catalogue" data-i="cat">Catalogue</a></li><li><a href="#marques" data-i="br">Marques</a></li><li><a href="#guide" data-i="gu">Guide</a></li><li><a href="#faq">FAQ</a></li></ul>
-<div class="nr"><button class="pill lt" id="lg" onclick="toggleLang()">EN</button><a class="pill" href="#catalogue" data-i="ex">Explorer</a></div></nav>
-
-<header class="hero"><div class="w">
-<div class="top"><div><div class="kick"><b>NEW</b><span data-i="tag">Winspace, Elves, Yoeleo, Magene : prix 2026</span></div>
-<h1 data-i="h1">Le vélo pro,<br><span class="serif">sans</span> le prix pro.</h1></div>
-<div><p class="lead" data-i="hp">Le pont entre les cyclistes du monde entier et les meilleures marques chinoises. Specs officielles, vrais prix, sources vérifiées.</p>
-<a class="pill" href="#catalogue" data-i="b1">Voir le catalogue →</a> <a class="pill lt" href="#guide" data-i="b2">Comment commander</a></div></div>
-<div class="bento rv">
-<a class="tile big" href="#catalogue"><span class="chip">Winspace</span><img src="https://images.unsplash.com/photo-1517649763962-0c623066013b?w=1400&q=75" alt=""><div class="cap"><small data-i="t_a">Cadre carbone</small><h3>SLC3.0 · 699 g</h3></div></a>
-<div class="tile stat"><div class="num" style="color:var(--acc)">$1,100</div><div class="lbl" data-i="s1">Cadres carbone homologués UCI dès</div></div>
-<a class="tile" href="#catalogue"><span class="chip">Yoeleo</span><img src="https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=800&q=75" alt=""><div class="cap"><small data-i="t_b">Roues</small><h3>SAT C50 · 1 320 g</h3></div></a>
-<a class="tile" href="#catalogue"><span class="chip">Magene</span><img src="https://images.unsplash.com/photo-1541625602330-2277a4c46182?w=800&q=75" alt=""><div class="cap"><small data-i="t_c">Capteur de puissance</small><h3>P505 · $299</h3></div></a>
-<div class="tile acc"><div class="num">12</div><div class="lbl" data-i="s3">produits référencés, avec leurs sources</div></div>
+<div class="top"><div class="w"><span data-i="topbar"></span><span><button id="lg" onclick="toggleLang()">EN</button></span></div></div>
+<header><div class="w">
+<div class="hb"><a class="logo" href="#">Dragon<b>Ride</b></a>
+<form class="sb" onsubmit="event.preventDefault();go()"><input id="q" data-ph="se" oninput="draw()"><button data-i="sbtn"></button></form>
+<div class="ic">
+<button onclick="cur='fav';draw();go()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-4.5-9.5-9A5.5 5.5 0 0 1 12 6a5.5 5.5 0 0 1 9.5 6c-2.5 4.5-9.5 9-9.5 9z"/></svg><i class="badge" id="fc">0</i><span data-i="favs"></span></button>
+<button onclick="openCart()"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 4h2l2.5 11h11L21 8H6.5"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/></svg><i class="badge" id="cc">0</i><span data-i="cartl"></span></button>
 </div></div>
-<div class="tick"><div><span>Winspace</span><span>Elves</span><span>Yoeleo</span><span>Magene</span><span>Pardus</span><span>ICAN</span><span>Ryet</span><span>LTWOO</span><span>Winspace</span><span>Elves</span><span>Yoeleo</span><span>Magene</span><span>Pardus</span><span>ICAN</span><span>Ryet</span><span>LTWOO</span></div></div>
-</header>
+<div class="cats" id="cats"></div></div></header>
 
-<section id="catalogue"><div class="w">
-<div class="sh rv"><h2 data-i="cat_h">Le <span class="serif">catalogue</span></h2><p data-i="cs">Prix officiels relevés sur les sites des marques. Cliquez pour voir la fiche.</p></div>
-<div class="tools"><input id="q" class="search" data-ph="se" oninput="draw()"><div class="filters" id="filters"></div></div>
-<div class="grid" id="grid"></div></div></section>
+<div class="w hero">
+<div class="side"><h4 data-i="bycat"></h4><div id="sidecats"></div></div>
+<div class="ban" id="ban"></div>
+<div class="rs">
+<div class="box promo"><h4 data-i="pt"></h4><p data-i="pp"></p><a class="btn" href="#deals" data-i="pb"></a></div>
+<div class="box trust"><ul>
+<li>✅<div><b data-i="tr1"></b><em data-i="tr1d"></em></div></li>
+<li>🏷️<div><b data-i="tr2"></b><em data-i="tr2d"></em></div></li>
+<li>🔗<div><b data-i="tr3"></b><em data-i="tr3d"></em></div></li></ul></div>
+</div></div>
 
-<section id="marques" class="dark"><div class="w">
-<div class="sh rv"><h2 data-i="br_h">Les <span class="serif">marques</span></h2><p data-i="bs">Elles fabriquent déjà pour les plus grands. Aujourd'hui, elles vendent sous leur propre nom.</p></div>
-<div class="brands" id="brands"></div></div></section>
+<div class="w sec" id="deals"><div class="flash">
+<div class="sh"><h2>⚡ <span data-i="fl"></span></h2><a href="#all" onclick="cur='*';sort.value='disc';draw()" data-i="seeall"></a></div>
+<div class="row" id="flash"></div></div></div>
 
-<section id="guide"><div class="w">
-<div class="sh rv"><h2 data-i="gt">Commander, <span class="serif">simplement</span></h2><p data-i="gs">Trois étapes, aucune mauvaise surprise.</p></div>
-<div class="steps rv">
-<div class="step"><div class="n">1</div><h3 data-i="t1">Comparer</h3><p data-i="p1">Specs officielles, poids et équivalents chez les grandes marques.</p></div>
-<div class="step"><div class="n">2</div><h3 data-i="t2">Anticiper le prix livré</h3><p data-i="p2">Pensez au port, à la TVA et à la douane de votre pays.</p></div>
-<div class="step"><div class="n">3</div><h3 data-i="t3">Acheter au bon endroit</h3><p data-i="p3">Boutiques officielles uniquement, pour éviter les contrefaçons.</p></div>
-</div></div></section>
+<div class="w sec"><div class="sh"><h2 data-i="brh"></h2></div><div class="brands" id="brands"></div></div>
 
-<section id="faq" style="padding-top:0"><div class="w faq rv">
-<h2 style="margin-bottom:30px">FAQ</h2>
-<details><summary data-i="q1">Les marques chinoises sont-elles fiables ?</summary><p data-i="a1">Plusieurs équipent des équipes pros et proposent des cadres homologués UCI. Vérifiez toujours la garantie et achetez en boutique officielle.</p></details>
-<details><summary data-i="q2">Vais-je payer la douane ?</summary><p data-i="a2">Souvent oui hors de Chine : TVA locale et parfois droits de douane. Certaines marques ont des entrepôts UE/US.</p></details>
-<details><summary data-i="q3">D'où viennent les prix ?</summary><p data-i="a3">Des sites officiels, relevés le 30/10/2026. Chaque fiche renvoie vers sa source.</p></details>
-</div></section>
+<div class="w sec" id="all">
+<div class="tb"><h2 style="font-size:22px;margin-right:10px" data-i="allh"></h2><span class="cnt" id="cnt"></span>
+<select id="sort" onchange="draw()"><option value="pop" data-i="s_pop"></option><option value="asc" data-i="s_asc"></option><option value="desc" data-i="s_desc"></option><option value="disc" data-i="s_disc"></option></select></div>
+<div class="grid" id="grid"></div></div>
 
-<section style="padding-top:0"><div class="cta rv">
-<h2 data-i="nt">Les bons plans, <span class="serif">avant tout le monde</span></h2><p data-i="np">Promos 11.11, nouveautés et retours de la communauté.</p>
-<form onsubmit="event.preventDefault();this.innerHTML='<p><b>'+t('ty')+'</b></p>'"><input type="email" required data-ph="em"><button class="pill" data-i="nb">S'inscrire</button></form>
-</div></section>
+<div class="w sec"><div class="nl"><div><h3 data-i="nt"></h3><p data-i="np"></p></div>
+<form onsubmit="event.preventDefault();this.innerHTML='<b>'+t('ty')+'</b>'"><input type="email" required data-ph="em"><button class="btn" data-i="nb"></button></form></div></div>
 
-<footer><div class="huge">DragonRide</div><div class="w"><span>© 2026 DragonRide</span><span data-i="ft">Liens affiliés : commission sans surcoût pour vous.</span></div></footer>
-<div class="modal" id="modal" onclick="if(event.target==this)closeM()"><div class="box" id="mbox"></div></div>
-<script src="i18n.js"></script><script src="app.js"></script></body></html>
+<footer><div class="w"><span>© 2026 DragonRide</span><span data-i="ft"></span></div></footer>
+
+<div class="ov" id="ov" onclick="closeAll()"></div>
+<div class="pm" id="pm" onclick="if(event.target==this)closeAll()"><div class="bx" id="pbx"></div></div>
+<aside class="cart" id="cart"><h3 data-i="cartt"></h3><div class="cl" id="cl"></div><div class="cf" id="cft"></div></aside>
+<script src="data.js"></script><script src="i18n.js"></script><script src="app.js"></script></body></html>

@@ -1,27 +1,36 @@
-const CE={Cadres:"Frames","Vélos complets":"Complete bikes",Roues:"Wheels",Capteurs:"Power meters"};const tc=c=>L=="en"?(CE[c]||c):c;
-const U=id=>`https://images.unsplash.com/${id}?w=700&q=70`;
-const P=[
-{n:"SLC3.0 Frameset",b:"Winspace",c:"Cadres",p:"$1,450",eq:"Specialized Aethos",img:U("photo-1532298229144-0ec0c57515c7"),s:["699 g (M, non peint)","Pneus jusqu'à 32 mm","Électronique ou mécanique"],src:"https://www.winspace.cc/collections/slc"},
-{n:"SLC3.0 Ultegra Di2",b:"Winspace",c:"Vélos complets",p:"$4,399",eq:"Canyon Ultimate CF SLX",img:U("photo-1485965120184-e220f721d03e"),s:["~7,1 kg (M, sans pédales)","Shimano Ultegra Di2 R8170 2×12","Roues carbone HYPER 3 D33"],src:"https://www.winspace.cc/products/slc3-ultegra-di2"},
-{n:"C5 Aero Frameset",b:"Winspace",c:"Cadres",p:"$1,550",eq:"Cervélo S5",img:U("photo-1505705694340-019e1e335916"),s:["Cadre aéro de course","Câblage intégré"],src:"https://www.winspace.cc/collections/frames"},
-{n:"G3 Gravel Frameset",b:"Winspace",c:"Cadres",p:"$1,550",eq:"Canyon Grail",img:U("photo-1544191696-102dbdaeeaa0"),s:["Pneus jusqu'à 50 mm (700c)","Compatible 650b"],src:"https://www.winspace.cc/collections/frames"},
-{n:"Falath EXP",b:"Elves",c:"Cadres",p:"$1,200",eq:"Trek Madone",img:U("photo-1511994298241-608e28f14fde"),s:["Cadre aéro homologué UCI","Boîtier T47 fileté","Nouveauté 2025"],src:"https://us.elvesbike.com/products/elves-falath-exp-carbon-road-disc-framesets-uci-approved"},
-{n:"Falath EVO+",b:"Elves",c:"Cadres",p:"$1,100",eq:"Giant Propel",img:U("photo-1517649763962-0c623066013b"),s:["Carbone Toray T800 + T1000","Pneus 32c, homologué UCI","Boîtier T47 inclus"],src:"https://us.elvesbike.com/products/elves-falath-evo-carbon-road-disc-framesets-uci-approved"},
-{n:"SAT C50 DB PRO NxT SL2",b:"Yoeleo",c:"Roues",p:"€999",eq:"Zipp 404 Firecrest",img:U("photo-1507035895480-2b3156c31fc8"),s:["Jante 50 mm","1 320 g (+5 %)","Largeur int. 23 mm / ext. 32 mm"],src:"https://www.yoeleobike.com/fr-fr"},
-{n:"SAT C35 DB PRO NxT SL2",b:"Yoeleo",c:"Roues",p:"€999",eq:"Enve SES 3.4",img:U("photo-1541625602330-2277a4c46182"),s:["Jante 35 mm","1 260 g (+5 %)","Largeur int. 23 mm"],src:"https://www.yoeleobike.com/fr-fr"},
-{n:"SAT C60 DB PRO NxT SL2",b:"Yoeleo",c:"Roues",p:"€1,049",eq:"Zipp 454 NSW",img:U("photo-1571068316344-75bc76f77890"),s:["Jante 60 mm","1 340 g (+5 %)","Largeur int. 22 mm"],src:"https://www.yoeleobike.com/fr-fr"},
-{n:"D8 NxT Disc",b:"Yoeleo",c:"Roues",p:"€1,599",eq:"Zipp Super-9",img:U("photo-1558981403-c5f9899a28bc"),s:["Roue lenticulaire","950 g (+50 g)"],src:"https://www.yoeleobike.com/fr-fr"},
-{n:"PES P505",b:"Magene",c:"Capteurs",p:"$299",eq:"Quarq DZero",img:U("photo-1517649763962-0c623066013b"),s:["Pédalier double face, ±1 %","~625 g (170 mm)","ANT+ / Bluetooth, IPX7"],src:"https://the5krunner.com/2024/12/16/magene-p505-review/"},
-{n:"QED P505 (DUB)",b:"Magene",c:"Capteurs",p:"$449",eq:"SRAM Rival AXS PM",img:U("photo-1541625602330-2277a4c46182"),s:["Axe SRAM DUB","618 g, ±1 %, 0–2500 W","Autonomie 200 h"],src:"https://www.magene.com/en/power-meters/56-qed-p505-power-meter.html"}];
-const cats=["*",...new Set(P.map(x=>x.c))];let cur="*";
-const F=document.getElementById("filters"),G=document.getElementById("grid");
-function draw(){F.innerHTML=cats.map(c=>`<button class="${c==cur?'on':''}" onclick="cur='${c}';draw()">${c=='*'?t('all'):tc(c)}</button>`).join("");const q=(document.getElementById("q").value||"").toLowerCase();
-G.innerHTML=P.map((x,i)=>[x,i]).filter(([x])=>(cur=="*"||x.c==cur)&&(x.n+x.b+x.eq+x.c).toLowerCase().includes(q)).map(([x,i])=>`<div class="card" onclick="open_(${i})"><div class="ph"><span class="chip">${tc(x.c)}</span><img loading="lazy" src="${x.img}" alt="${x.n}"></div><div class="in"><div class="br">${x.b}</div><h3>${x.n}</h3><p class="eq">${t("alt")} <b>${x.eq}</b></p><div class="row"><span class="price">${x.p}</span><span class="go">→</span></div></div></div>`).join("")||`<p class="eq">${t("none")}</p>`}
-function open_(i){const x=P[i];document.getElementById("mbox").innerHTML=`<img src="${x.img}" alt=""><div class="in"><button class="x" onclick="closeM()">✕</button><div class="br" style="font-size:12px;color:var(--mut);font-weight:600;letter-spacing:.06em;text-transform:uppercase">${x.b} · ${tc(x.c)}</div><h2>${x.n}</h2><p class="eq">${t("alt")} <b>${x.eq}</b></p><ul class="specs">${x.s.map(s=>`<li>${s}</li>`).join("")}</ul><p class="note">${t("chk")} · <a href="${x.src}" target="_blank" rel="noopener">${t("srcl")}</a></p><a class="pill" href="${x.src}" target="_blank" rel="noopener">${t("buy")} · ${x.p} →</a></div>`;document.getElementById("modal").classList.add("on");document.body.style.overflow="hidden"}
-function closeM(){document.getElementById("modal").classList.remove("on");document.body.style.overflow=""}
-addEventListener("keydown",e=>e.key=="Escape"&&closeM());
-const B={Pardus:"Cadres de course, utilisés en équipe pro",Elves:"Roues et cadres haut de gamme, Taiwan",Winspace:"Cadres carbone de course, Xiamen",Magene:"Capteurs et électronique, Shanghai",Yoeleo:"Roues carbone, Xiamen",Ryet:"Selles imprimées en 3D",LTWOO:"Groupes de transmission",ICAN:"Cadres en vente directe, Shenzhen"};
-document.getElementById("brands").innerHTML=Object.entries(B).map(([k,v])=>{const n=P.filter(x=>x.b==k).length;return `<div class="brand"><div><b>${k}</b><p>${v}</p></div><div class="cnt"><span>${n?n+" "+t("prods"):t("soon")}</span><span>↗</span></div></div>`}).join("");
-applyLang();
-const io=new IntersectionObserver(e=>e.forEach(x=>x.isIntersecting&&x.target.classList.add("vis")),{threshold:.1});document.querySelectorAll(".rv").forEach(el=>io.observe(el));
-
+const $=id=>document.getElementById(id);
+let cur="*",bi=0;
+let favs=JSON.parse(localStorage.favs||"[]"),list=JSON.parse(localStorage.list||"[]");
+const save=()=>{localStorage.favs=JSON.stringify(favs);localStorage.list=JSON.stringify(list);$("fc").textContent=favs.length;$("cc").textContent=list.length};
+const C=["*","frames","bikes","wheels","power"];
+const fm=x=>x.cur=="€"?x.p.toLocaleString("fr-FR")+" €":"$"+x.p.toLocaleString("en-US");
+const fo=x=>x.cur=="€"?x.o.toLocaleString("fr-FR")+" €":"$"+x.o.toLocaleString("en-US");
+const disc=x=>x.o?Math.round((1-x.p/x.o)*100):0;
+const BAN=[{k:"b1",img:"photo-1517649763962-0c623066013b",c:"frames"},{k:"b2",img:"photo-1507035895480-2b3156c31fc8",c:"wheels"},{k:"b3",img:"photo-1541625602330-2277a4c46182",c:"power"}];
+function card(x){const d=disc(x),f=favs.includes(x.id);return `<div class="card" onclick="openP(${x.id})"><div class="ph"><img loading="lazy" src="${x.img}" alt="">${d?`<span class="off">-${d}%</span>`:""}<button class="fav ${f?"on":""}" onclick="event.stopPropagation();tf(${x.id})">${f?"♥":"♡"}</button></div><div class="in"><h3>${x.n}</h3><div class="pr"><b>${fm(x)}</b>${x.o?`<s>${fo(x)}</s>`:""}</div><div class="tags"><span class="tg">≈ ${x.eq}</span><span class="tg g">✓ ${t("shopd")}</span></div><div class="store">${x.b} ›</div></div><button class="add" onclick="event.stopPropagation();al(${x.id},this)">+</button></div>`}
+function render(){
+$("cats").innerHTML=[...C,"fav"].map(c=>`<button class="${c==cur?"on":""}" onclick="cur='${c}';draw();go()">${c=="*"?t("all"):t(c)}</button>`).join("");
+$("sidecats").innerHTML=C.slice(1).map(c=>`<a onclick="cur='${c}';draw();go()">${t(c)}<span>${P.filter(x=>x.c==c).length}</span></a>`).join("");
+const b=BAN[bi];$("ban").style.backgroundImage=`url(https://images.unsplash.com/${b.img}?w=1400&q=75)`;
+$("ban").innerHTML=`<div><small>DragonRide</small><h1>${t(b.k+"t")}</h1><p>${t(b.k+"p")}</p><a class="btn" onclick="cur='${b.c}';draw();go()">${t("shop")} →</a></div><div class="dots">${BAN.map((_,i)=>`<i class="${i==bi?"on":""}" onclick="bi=${i};render()"></i>`).join("")}</div>`;
+$("flash").innerHTML=P.filter(x=>x.o).concat(P.filter(x=>!x.o).slice(0,3)).map(card).join("");
+$("brands").innerHTML=Object.entries(BR).map(([k,[col,loc]])=>{const n=P.filter(x=>x.b==k).length;return `<div class="brand" onclick="q.value='${k}';cur='*';draw();go()"><div class="lg" style="background:${col}">${k[0]}</div><b>${k}</b><small>${loc} · ${n?n+" "+t("prods"):t("soon")}</small></div>`}).join("");
+draw();save()}
+function draw(){const s=(q.value||"").toLowerCase().trim();
+let r=P.filter(x=>(cur=="*"||(cur=="fav"?favs.includes(x.id):x.c==cur))&&(x.n+" "+x.b+" "+x.eq+" "+t(x.c)).toLowerCase().includes(s));
+const so=$("sort").value;if(so=="asc")r.sort((a,b)=>a.p-b.p);if(so=="desc")r.sort((a,b)=>b.p-a.p);if(so=="disc")r.sort((a,b)=>disc(b)-disc(a));
+$("cnt").textContent=r.length+" "+t("res");$("grid").innerHTML=r.map(card).join("")||`<div class="empty">${t("empty")}</div>`;
+document.querySelectorAll("#cats button").forEach((b,i)=>b.classList.toggle("on",[...C,"fav"][i]==cur))}
+function go(){$("all").scrollIntoView({behavior:"smooth"})}
+function tf(id){favs=favs.includes(id)?favs.filter(i=>i!=id):[...favs,id];save();render()}
+function al(id,el){if(!list.includes(id))list.push(id);save();if(el){el.textContent="✓";setTimeout(()=>el.textContent="+",900)}}
+function openP(id){const x=P.find(p=>p.id==id),d=disc(x);$("pbx").innerHTML=`<button class="x" onclick="closeAll()">✕</button><img src="${x.img}" alt=""><div class="in"><span class="store">${x.b} · ${t(x.c)}</span><h2>${x.n}</h2><div class="pr"><b>${fm(x)}</b>${x.o?`<s>${fo(x)}</s> <span class="off" style="position:static">-${d}%</span>`:""}</div><div class="tags"><span class="tg">${t("alt")} ${x.eq}</span><span class="tg g">✓ ${t("shopd")}</span></div><ul class="spec">${x.s.map(s=>`<li>${s}</li>`).join("")}</ul><div class="ship">${t("ship")}</div><div class="acts"><a class="btn" href="${x.src}" target="_blank" rel="noopener">${t("buy")} →</a><button class="btn dk" onclick="al(${x.id});this.textContent=t('added')">${list.includes(x.id)?t("added"):t("addl")}</button></div><p class="note">${t("chk")} · <a href="${x.src}" target="_blank" rel="noopener">${t("srcl")}</a></p></div>`;$("pm").classList.add("on");$("ov").classList.add("on");document.body.style.overflow="hidden"}
+function openCart(){const it=list.map(i=>P.find(p=>p.id==i)).filter(Boolean);
+$("cl").innerHTML=it.map(x=>`<div class="ci"><img src="${x.img}" alt=""><div><b>${x.n}</b>${fm(x)}<br><a href="${x.src}" target="_blank" rel="noopener">${t("open")} ↗</a></div><button onclick="list=list.filter(i=>i!=${x.id});save();openCart()">✕</button></div>`).join("")||`<p class="note" style="padding:20px 0">${t("emptyc")}</p>`;
+const us=it.filter(x=>x.cur=="$").reduce((a,x)=>a+x.p,0),eu=it.filter(x=>x.cur=="€").reduce((a,x)=>a+x.p,0);
+$("cft").innerHTML=it.length?`<div style="display:flex;justify-content:space-between"><span>${t("tot")}</span><b>${[us?"$"+us.toLocaleString("en-US"):"",eu?eu.toLocaleString("fr-FR")+" €":""].filter(Boolean).join(" + ")}</b></div>`:"";
+$("cart").classList.add("on");$("ov").classList.add("on")}
+function closeAll(){["pm","ov","cart"].forEach(i=>$(i).classList.remove("on"));document.body.style.overflow=""}
+addEventListener("keydown",e=>e.key=="Escape"&&closeAll());
+const q=$("q");setInterval(()=>{bi=(bi+1)%BAN.length;const b=BAN[bi];if(!$("pm").classList.contains("on"))render()},6000);
+applyLang();render();
