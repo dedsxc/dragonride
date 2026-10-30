@@ -112,3 +112,13 @@ footer .w{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
 .flash .card .in{padding-bottom:12px}
 @media(max-width:1000px){.tiles{grid-template-columns:1fr 1fr;margin-top:-120px}.amz .ban{min-height:340px;padding:40px 20px}}
 @media(max-width:560px){.tiles{grid-template-columns:1fr 1fr;gap:8px}.tile{padding:12px}.tile h3{font-size:14px}}
+
+.card .ph{background:#fff}.card .ph img{object-fit:contain;padding:8px}
+.tile .q4 img,.tile .one img,.circ img,.ci img{object-fit:contain;background:#fff}
+.amz .ban{background:linear-gradient(120deg,#16181d,#2a2f3a 60%,#ff4f1f);display:flex;align-items:center;justify-content:space-between;gap:20px}
+.amz .ban:before{background:linear-gradient(180deg,#0000 55%,var(--bg) 100%)}
+.amz .ban .bt{max-width:520px}.amz .ban h1{font-size:46px}
+.bimg{width:min(46vw,560px);aspect-ratio:1.4;object-fit:contain;background:#fff;border-radius:18px;padding:10px;cursor:pointer;box-shadow:0 20px 50px #0006;position:relative;margin-bottom:120px}
+.gal{display:flex;flex-direction:column;background:#fff}.gal #gm{object-fit:contain;min-height:380px;padding:16px}
+.gal .th{display:flex;gap:6px;padding:0 12px 12px}.gal .th img{width:64px;height:64px;min-height:0;object-fit:contain;border:1px solid var(--line);border-radius:8px;cursor:pointer}
+@media(max-width:800px){.bimg{display:none}.amz .ban h1{font-size:32px}}
